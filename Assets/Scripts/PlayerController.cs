@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public float speed = 0;
     public TextMeshProUGUI countText;
+    public GameObject winTextObject;
+
     private Rigidbody rigB;
     private float moveX, moveY;
     private int count;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rigB = GetComponent<Rigidbody>();
         count = 0;
+        winTextObject.SetActive(false);
 
         SetCountText();
     }
@@ -46,6 +49,8 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text += count.ToString();
+        countText.text = "Count: " + count.ToString();
+        if (count >= 12)
+            winTextObject.SetActive(true);
     }
 }
